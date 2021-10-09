@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Section from './Section'
 
 function Home() {
-    return (
+    return ( 
         <Container>
             <Section 
                 title= "Model S"
@@ -19,6 +19,12 @@ function Home() {
                 image= "model-3.jpg"
                 leftBtnText="Custom Order"
                 rightBtnText="Existing Inventory"
+            />
+
+            <Section 
+                title= "Accesories"
+                image= "accessories.jpg"
+                leftBtnText="Custom Order"
             />
              
         </Container>
