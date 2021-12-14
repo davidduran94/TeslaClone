@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
+import { selectCars } from '../features/car/carSlice'
+
 
 const Header = () => {
     const [burgerStatus, setBurgerStatus] = useState(false);
-
+    const cars = useSelector(selectCars);
+    
     return (
         <Container>
             <a>
                 <img src='/assets/images/logo.svg' />
             </a>
             <Menu>
-                <p><a href='#'>Model S</a></p>
-                <p><a href='#'>Model 3</a></p>
-                <p><a href='#'>Model X</a></p>
-                <p><a href='#'>Model Y</a></p>
+                {cars && cars.map((car, index) => <p><a key={index} href='#'>{ car }</a></p>) }  
             </Menu>
             <RightMenu>
                 <a href='#'>Shop</a>
@@ -26,11 +27,8 @@ const Header = () => {
                     <CloseWrapper>
                         <CustomClose onClick={ () => setBurgerStatus(false) } />
                     </CloseWrapper>
-                   
-                    <li><a href='#'>Existing Iventory</a></li>
-                    <li><a href='#'>Existing Iventory</a></li>
-                    <li><a href='#'>Existing Iventory</a></li>
-                    <li><a href='#'>Existing Iventory</a></li>
+                    {cars && cars.map((car, index) => <li><a key={index} href='#'>{ car }</a></li>) }  
+
                 </BurgerNav>
             </RightMenu>
         </Container>
@@ -78,6 +76,8 @@ const CustomMenu = styled(MenuIcon)`
 `
 
 const RightMenu = styled.div`
+    display: flex;
+    align-items: center;
     a {
         font-weight: 600;
         text-transform: uppercase;
